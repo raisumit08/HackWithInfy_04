@@ -99,3 +99,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add initial bot message
     addMessageToChat('bot', "Hello! I'm your health assistant. How can I help you today?");
 });
+
+
+function toggleChat() {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.classList.toggle('open');
+}
+
+function sendMessage() {
+    const userMessage = document.getElementById('user-message').value;
+    const chatMessages = document.getElementById('chat-messages');
+
+    if (userMessage.trim() !== '') {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `You: ${userMessage}`;
+        chatMessages.appendChild(messageElement);
+        document.getElementById('user-message').value = '';
+    }
+}

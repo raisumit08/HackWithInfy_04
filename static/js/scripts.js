@@ -117,3 +117,71 @@ function sendMessage() {
         document.getElementById('user-message').value = '';
     }
 }
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Function to load content
+    function loadContent(url) {
+      fetch(`/api/${url}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.content) {
+            document.getElementById('content-area').innerHTML = data.content;
+          } else {
+            console.error('Error loading content');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  
+    // Function to handle link clicks
+    function handleLinkClick(e) {
+      e.preventDefault();
+      const url = e.target.getAttribute('href').substring(1); // Remove leading '/'
+      history.pushState(null, '', e.target.href);
+      loadContent(url);
+    }
+  
+    // Add click event listeners to all navigation links
+    document.querySelectorAll('header nav a, aside a').forEach(link => {
+      link.addEventListener('click', handleLinkClick);
+    });
+  
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', () => {
+      const url = window.location.pathname.substring(1); // Remove leading '/'
+      loadContent(url);
+    });
+  
+    // Load initial content
+    const initialUrl = window.location.pathname.substring(1) || 'dashboard';
+    loadContent(initialUrl);
+  });
+  
+  function toggleChat() {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.classList.toggle('open');
+  }
+  
+  function sendMessage() {
+    const userInput = document.getElementById('user-message');
+    const message = userInput.value.trim();
+    if (message) {
+      // Add user message to chat
+      addMessageToChat('user', message);
+      // Clear input
+      userInput.value = '';
+      // TODO: Send message to backend and get response
+      // For now, we'll just echo the message back
+      setTimeout(() => {
+        addMessageToChat('bot', `You said: ${message}`);
+      }, 1000);
+    }
+  }
+  
+  function addMessageToChat(sender, message) {
+    const chatMessages = document.getElementById('chat-messages');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('mb-2', sender === 'user' ? 'text-right' : 'text-left');
+    messageElement.textContent = message;
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }

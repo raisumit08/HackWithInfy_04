@@ -1,13 +1,10 @@
-<h2>Virtual Health Coaching</h2>
+<h2 class="text-2xl font-bold mb-4">Virtual Health Coaching</h2>
 <div class="virtual-coaching">
-    <div id="chat-window">
-        <!-- Chat messages will appear here -->
-    </div>
-    <input type="text" id="user-input" placeholder="Ask your health coach a question...">
-    <button onclick="sendMessage()">Send</button>
+  <div id="chat-window" class="border border-gray-300 rounded p-4 h-64 overflow-y-auto">
+    <!-- Chat messages will appear here -->
+  </div>
+  <div class="mt-4 flex">
+    <input type="text" id="user-input" class="flex-1 p-2 border border-gray-300 rounded" placeholder="Ask your health coach a question...">
+    <button class="ml-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onclick="sendMessage()">Send</button>
+  </div>
 </div>
-<script>
-function sendMessage() {
-    // Implement chat functionality here
-}
-</script>

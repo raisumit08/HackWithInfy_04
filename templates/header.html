@@ -1,0 +1,10 @@
+<header>
+    <h1>My Application</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('render_page', page='profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('render_page', page='settings') }}">Settings</a></li>
+        </ul>
+    </nav>
+</header>

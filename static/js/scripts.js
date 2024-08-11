@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load initial content
     loadContent('dashboard');
 
-    // Initialize chatbot
+    // Chatbot functionality
     const chatbot = document.getElementById('chatbot');
     const chatMessages = document.getElementById('chat-messages');
     const chatToggle = document.querySelector('.chat-toggle');
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendButton = document.getElementById('send-button');
 
     chatMessages.classList.add('h-64', 'max-h-64', 'overflow-y-auto');
-    addMessageToChat('bot', "Hello! I'm your health assistant. How can I help you today?");
+    addMessageToChat('bot', "Hello! I'm your health assistant powered by Gemini. How can I help you today?");
 
     chatToggle.addEventListener('click', toggleChat);
     sendButton.addEventListener('click', sendMessage);
@@ -69,18 +69,20 @@ document.addEventListener('DOMContentLoaded', function() {
         chatInput.classList.toggle('hidden');
     }
 
-    function sendMessage() {
+    async function sendMessage() {
         const message = userMessageInput.value.trim();
         
         if (message) {
             addMessageToChat('user', message);
             userMessageInput.value = '';
             
-            // Simulate bot response (replace with actual API call in a real application)
-            setTimeout(() => {
-                const botResponse = getBotResponse(message);
-                addMessageToChat('bot', botResponse);
-            }, 1000);
+            try {
+                const response = await getGeminiResponse(message);
+                addMessageToChat('bot', response);
+            } catch (error) {
+                console.error('Error:', error);
+                addMessageToChat('bot', "I'm sorry, I encountered an error. Please try again later.");
+            }
         }
     }
 
@@ -100,21 +102,29 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function getBotResponse(message) {
-        // This is a simple example. In a real application, you'd integrate with a proper chatbot API.
-        const responses = {
-            'hello': 'Hi there! How can I assist you with your health today?',
-            'how are you': "I'm an AI assistant, so I don't have feelings, but I'm functioning well. How can I help you?",
-            'bye': 'Goodbye! Take care of your health!',
-        };
-        
-        message = message.toLowerCase();
-        for (const key in responses) {
-            if (message.includes(key)) {
-                return responses[key];
-            }
+    async function getGeminiResponse(message) {
+        const API_KEY = 'AIzaSyDcMmRQJoheKn-qM7HZ5yRRFEk65Kz8_og'; // Replace with your actual Gemini API key
+        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+        const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: message
+                    }]
+                }]
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to get response from Gemini API');
         }
-        
-        return "I'm sorry, I didn't understand that. Can you please rephrase or ask a health-related question?";
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
     }
 });

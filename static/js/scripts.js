@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                 const response = await getGeminiResponse(message);
-                addMessageToChat('bot', response);
+                const formattedResponse = formatResponse(response);
+                addMessageToChat('bot', formattedResponse);
             } catch (error) {
                 console.error('Error:', error);
                 addMessageToChat('bot', "I'm sorry, I encountered an error. Please try again later.");
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function getGeminiResponse(message) {
-        const API_KEY = 'AIzaSyDcMmRQJoheKn-qM7HZ5yRRFEk65Kz8_og'; // Replace with your actual Gemini API key
+        const API_KEY = 'AIzaSyDcMmRQJoheKn-qM7HZ5yRRFEk65Kz8_og';
         const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
         const response = await fetch(`${API_URL}?key=${API_KEY}`, {
@@ -126,5 +127,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const data = await response.json();
         return data.candidates[0].content.parts[0].text;
+    }
+
+    function formatResponse(response) {
+        return response.replace(/[\[\]{}'"`]/g, '').trim();
     }
 });

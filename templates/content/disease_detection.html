@@ -1,14 +1,42 @@
 <h2 class="text-2xl font-bold mb-4">Early Disease Detection</h2>
 <div class="disease-detection space-y-6">
-  <div>
-    <h3 class="text-xl font-semibold">AI-Powered Diagnostic Tools</h3>
-    <p class="text-gray-700">Upload your medical images or test results for AI analysis.</p>
-    <button class="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" >Upload Files</button>
-  </div>
-  <div>
-    <h3 class="text-xl font-semibold">Symptom Checker</h3>
-    <p class="text-gray-700">Describe your symptoms for a preliminary diagnosis.</p>
-    <textarea class="mt-2 w-full p-2 border border-gray-300 rounded" placeholder="Enter your symptoms here..."></textarea>
-    <button class="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Check Symptoms</button>
-  </div>
+    <div>
+        <h3 class="text-xl font-semibold">AI-Powered Diagnostic Tools</h3>
+        <p class="text-gray-700">Upload your medical images or test results for AI analysis.</p>
+        <button id="uploadButton" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Upload Files</button>
+        <input type="file" id="fileInput" class="hidden" accept="image/jpeg" multiple>
+    </div>
+    <div>
+        <h3 class="text-xl font-semibold">Symptom Checker</h3>
+        <p class="text-gray-700">Describe your symptoms for a preliminary diagnosis.</p>
+        <textarea class="mt-2 w-full p-2 border border-gray-300 rounded" placeholder="Enter your symptoms here..."></textarea>
+        <button class="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Check Symptoms</button>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadButton = document.getElementById('uploadButton');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadButton.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function(event) {
+            const files = event.target.files;
+            if (files.length > 0) {
+                console.log('JPEG files selected:', files);
+                // Process the uploaded JPEG files as needed
+                Array.from(files).forEach(file => {
+                    if (file.type === 'image/jpeg') {
+                        // Handle each JPEG file
+                        console.log('Processing file:', file.name);
+                    } else {
+                        console.error('Unsupported file type:', file.type);
+                    }
+                });
+            }
+        });
+    });
+</script>

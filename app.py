@@ -1,4 +1,7 @@
 from flask import Flask, render_template, jsonify
+import google.generativeai as genai
+import os
+# export API_KEY='AIzaSyD4bNnAaVjEUaA1WZKpz39kThvrQTw3noU'
 
 app = Flask(__name__)
 
@@ -21,5 +24,15 @@ def get_page_content(page):
     except:
         return jsonify({'error': 'Page not found'}), 404
 
+
+genai.configure(api_key=os.environ["API_KEY"])
+
+model = genai.GenerativeModel('gemini-1.5-flash')
+
+response = model.generate_content("Write a story about an AI and magic")
+print(response.text, "vksngjabsjg")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+

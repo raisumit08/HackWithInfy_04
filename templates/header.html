@@ -1,10 +1,27 @@
-<header>
-    <h1>My Application</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('render_page', page='profile') }}">Profile</a></li>
-            <li><a href="{{ url_for('render_page', page='settings') }}">Settings</a></li>
-        </ul>
-    </nav>
+<header class="flex items-center justify-between bg-blue-600 p-4">
+  <div class="flex items-center">
+    <img src="./static/Data/icon.png" alt="Company Logo" class="h-10 mr-3">
+    <span class="text-lg font-bold text-white">Smile :)</span>
+  </div>
+  <nav class="flex space-x-8">
+    <a href="/streak" class="text-white hover:text-gray-200 flex items-center" title="Streak">
+      <i class="fas fa-fire text-xl mr-2"></i>
+      <span class="font-semibold">0</span>
+    </a>
+    <a href="/dashboard" class="text-white hover:text-gray-200" title="Health Dashboard">
+      <i class="fas fa-heartbeat text-xl"></i>
+    </a>
+    <a href="/disease_detection" class="text-white hover:text-gray-200" title="Disease Detection">
+      <i class="fas fa-diagnoses text-xl"></i>
+    </a>
+    <a href="/health_recommendations" class="text-white hover:text-gray-200" title="Health Recommendations">
+      <i class="fas fa-stethoscope text-xl"></i>
+    </a>
+    <a href="/virtual_coaching" class="text-white hover:text-gray-200" title="Virtual Coaching">
+      <i class="fas fa-user-md text-xl"></i>
+    </a>
+    <a href="/profile" class="text-white hover:text-gray-200" title="Profile">
+      <i class="fas fa-user text-xl"></i>
+    </a>
+  </nav>
 </header>

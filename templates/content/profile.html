@@ -1,8 +1,36 @@
-{% extends "base.html" %}
-
-{% block content %}
-<section id="profile">
-    <h2>Profile Page</h2>
-    <p>Welcome to the profile page!</p>
-</section>
-{% endblock %}
+<!-- Profile Card -->
+<div class="bg-white shadow-lg rounded-lg w-full max-w-4xl mx-auto my-8">
+    <!-- Image Section -->
+    <div class="bg-blue-500 h-48 rounded-t-lg"></div>
+    <div class="flex justify-center -mt-20">
+      <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-full border-4 border-white">
+    </div>
+  
+    <!-- Profile Information -->
+    <div class="p-8">
+      <h2 class="text-center text-3xl font-semibold mb-4">John Doe</h2>
+      <p class="text-center text-gray-600 mb-2">ID: #123456</p>
+      <p class="text-center text-gray-600 mb-2">Email: john.doe@example.com</p>
+      <p class="text-center text-gray-600 mb-4">Blood Group: O+</p>
+  
+      <!-- Health Metrics -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-lg font-medium">Avg BP</h3>
+          <p class="text-gray-700">120/80 mmHg</p>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-lg font-medium">Avg Temp</h3>
+          <p class="text-gray-700">98.6°F</p>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-lg font-medium">Avg Oxygen</h3>
+          <p class="text-gray-700">98%</p>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-lg font-medium">Avg Heart Rate</h3>
+          <p class="text-gray-700">72 bpm</p>
+        </div>
+      </div>
+    </div>
+  </div>  

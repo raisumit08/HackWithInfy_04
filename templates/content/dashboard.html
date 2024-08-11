@@ -1,0 +1,76 @@
+
+  <!-- Main Container -->
+  <div class="grid grid-cols-3 gap-6">
+    <!-- Profile Card (Left) -->
+    <div class="col-span-1">
+      <div class="bg-white shadow-lg rounded-lg">
+        <!-- Image Section -->
+        <div class="bg-blue-500 h-32 rounded-t-lg"></div>
+        <div class="flex justify-center -mt-16">
+          <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-full border-4 border-white -mt-3">
+        </div>
+
+        <!-- Profile Information -->
+        <div class="p-6">
+          <h2 class="text-center text-2xl font-semibold mb-2">John Doe</h2>
+          <p class="text-center text-gray-600 mb-4">ID: #123456</p>
+          <p class="text-center text-gray-600 mb-4">Email: john.doe@example.com</p>
+          <p class="text-center text-gray-600 mb-4">Blood Group: O+</p>
+
+          <!-- Health Metrics -->
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="bg-gray-100 p-4 rounded-lg shadow">
+              <h3 class="text-lg font-medium">Avg BP</h3>
+              <p class="text-gray-700">120/80 mmHg</p>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg shadow">
+              <h3 class="text-lg font-medium">Avg Temp</h3>
+              <p class="text-gray-700">98.6°F</p>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg shadow">
+              <h3 class="text-lg font-medium">Avg Oxygen</h3>
+              <p class="text-gray-700">98%</p>
+            </div>
+            <div class="bg-gray-100 p-4 rounded-lg shadow">
+              <h3 class="text-lg font-medium">Avg Heart Rate</h3>
+              <p class="text-gray-700">72 bpm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Health Dashboard (Right) -->
+    <div class="col-span-2">
+      <h2 class="text-2xl font-bold mb-4">Health Dashboard</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="metric p-4 bg-white shadow rounded-lg">
+          <h3 class="text-lg font-semibold">Heart Rate</h3>
+          <p class="text-gray-700">72 bpm</p>
+        </div>
+        <div class="metric p-4 bg-white shadow rounded-lg">
+          <h3 class="text-lg font-semibold">Blood Pressure</h3>
+          <p class="text-gray-700">120/80 mmHg</p>
+        </div>
+        <div class="metric p-4 bg-white shadow rounded-lg">
+          <h3 class="text-lg font-semibold">Steps</h3>
+          <p class="text-gray-700">8,500</p>
+        </div>
+        <div class="metric p-4 bg-white shadow rounded-lg">
+          <h3 class="text-lg font-semibold">Sleep</h3>
+          <p class="text-gray-700">7h 30m</p>
+        </div>
+      </div>
+
+      <!-- Graphs -->
+      <h2 class="text-2xl font-bold mt-8 mb-4">Health Graphs</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <canvas id="heartRateChart" class="bg-white p-4 rounded-lg shadow"></canvas>
+        <canvas id="bloodPressureChart" class="bg-white p-4 rounded-lg shadow"></canvas>
+        <canvas id="stepsChart" class="bg-white p-4 rounded-lg shadow"></canvas>
+        <canvas id="sleepChart" class="bg-white p-4 rounded-lg shadow"></canvas>
+      </div>
+    </div>
+  </div>
+
+  

@@ -22,18 +22,17 @@
   </div>
   
   <!-- Chatbot -->
-  <div id="chatbot" class="fixed bottom-5 right-5 w-80 bg-white rounded-lg shadow-lg">
-    <div class="chat-header bg-blue-500 text-white p-3 cursor-pointer" onclick="toggleChat()">
-      <h4>Health Assistant</h4>
+  <div id="chatbot" class="fixed bottom-4 right-4 w-80 bg-white shadow-lg rounded-lg overflow-hidden transition-all duration-300 h-auto">
+    <div class="chat-toggle bg-blue-500 hover:bg-blue-600 text-white p-4 cursor-pointer transition-colors duration-200">
+        <h3 class="text-lg font-semibold">Health Assistant</h3>
     </div>
-    <div class="chat-body hidden flex-col p-3">
-      <div id="chat-messages" class="flex-1 overflow-y-auto mb-3"></div>
-      <div class="chat-input flex">
-        <input type="text" id="user-message" class="flex-1 p-2 border border-gray-300 rounded" placeholder="Type your message...">
-        <button class="ml-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onclick="sendMessage()">Send</button>
-      </div>
+    <div id="chat-messages" class="p-4 h-64 overflow-y-auto"></div>
+    <div class="chat-input flex p-4">
+        <input type="text" id="user-message" class="flex-grow border rounded-l px-2 py-1" placeholder="Type your message...">
+        <button id="send-button" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-r transition-colors duration-200">Send</button>
     </div>
-  </div>
+</div>
+
 
   <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
